@@ -6,7 +6,12 @@
                 <h1 class="raw-title">Workshop subscriptions</h1>
                 <p class="page-intro">Manage subscriptions and the partner network that supports every maintenance service.</p>
             </div>
-            <a href="{{ route('workshops.index') }}" class="raw-button">Manage workshop data</a>
+            <div class="hero-header-actions">
+                <a href="{{ route('workshops.index', ['create' => 'subscription']) }}#subscriptions" class="raw-button">
+                    Add subscription manually
+                </a>
+                <a href="{{ route('workshops.index') }}" class="raw-button secondary">Manage workshop data</a>
+            </div>
         </div>
     </x-slot>
 
@@ -58,7 +63,7 @@
         </div>
 
         <div class="management-grid">
-            <a class="management-item featured" href="{{ route('workshops.index') }}#subscriptions">
+            <a class="management-item featured" href="{{ route('workshops.index', ['create' => 'subscription']) }}#subscriptions">
                 <span class="management-index">01</span>
                 <div><h3>Subscriptions</h3><p>Create, review, update, and export workshop subscription records.</p></div>
                 <span class="management-count">{{ $totalSubscriptions }}</span>

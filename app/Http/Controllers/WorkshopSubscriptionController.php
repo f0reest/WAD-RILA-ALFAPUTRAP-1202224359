@@ -10,6 +10,7 @@ use App\Models\WorkshopSubscription;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use Maatwebsite\Excel\Facades\Excel;
 
 class WorkshopSubscriptionController extends Controller
@@ -95,10 +96,18 @@ class WorkshopSubscriptionController extends Controller
 
     public function store(Request $request): RedirectResponse
     {
-        $validated = $request->validate([
+        $validated = $request->validateWithBag('subscription', [
             'partner_id' => ['required', 'exists:workshop_partners,id'],
-            'location_id' => ['required', 'exists:workshop_locations,id'],
-            'contact_id' => ['nullable', 'exists:workshop_contacts,id'],
+            'location_id' => [
+                'required',
+                Rule::exists('workshop_locations', 'id')
+                    ->where(fn ($query) => $query->where('partner_id', $request->input('partner_id'))),
+            ],
+            'contact_id' => [
+                'nullable',
+                Rule::exists('workshop_contacts', 'id')
+                    ->where(fn ($query) => $query->where('partner_id', $request->input('partner_id'))),
+            ],
             'service_type_id' => ['required', 'exists:workshop_service_types,id'],
             'subscription_code' => ['required', 'string', 'max:100', 'unique:workshop_subscriptions,subscription_code'],
             'status' => ['required', 'in:active,pending,expired,paused'],
@@ -110,15 +119,25 @@ class WorkshopSubscriptionController extends Controller
 
         WorkshopSubscription::create($validated);
 
-        return redirect()->route('workshops.index')->with('success', 'Subscription workshop berhasil ditambahkan.');
+        return redirect()
+            ->to(route('workshops.index') . '#subscriptions-table')
+            ->with('success', 'Subscription workshop berhasil ditambahkan secara manual.');
     }
 
     public function update(Request $request, WorkshopSubscription $subscription): RedirectResponse
     {
         $validated = $request->validate([
             'partner_id' => ['required', 'exists:workshop_partners,id'],
-            'location_id' => ['required', 'exists:workshop_locations,id'],
-            'contact_id' => ['nullable', 'exists:workshop_contacts,id'],
+            'location_id' => [
+                'required',
+                Rule::exists('workshop_locations', 'id')
+                    ->where(fn ($query) => $query->where('partner_id', $request->input('partner_id'))),
+            ],
+            'contact_id' => [
+                'nullable',
+                Rule::exists('workshop_contacts', 'id')
+                    ->where(fn ($query) => $query->where('partner_id', $request->input('partner_id'))),
+            ],
             'service_type_id' => ['required', 'exists:workshop_service_types,id'],
             'subscription_code' => ['required', 'string', 'max:100', 'unique:workshop_subscriptions,subscription_code,' . $subscription->id],
             'status' => ['required', 'in:active,pending,expired,paused'],
