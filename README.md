@@ -12,6 +12,7 @@ The interface is lightweight and focused on operational workflows, making the ap
 - Track `active`, `pending`, `paused`, and `expired` subscription statuses
 - Export subscription data to Excel and PDF
 - Authentication, profile settings, and password management
+- Admin-only access with public registration disabled
 - Responsive layouts for desktop and mobile devices
 - Persistent light and dark themes
 
@@ -89,7 +90,7 @@ Open [http://127.0.0.1:8000](http://127.0.0.1:8000).
 
 ## Demo account
 
-The database seeder creates an administrator account for local development:
+The database seeder creates the administrator account used to access the application locally. Public registration is disabled, so only accounts already stored in the `users` table can sign in.
 
 ```text
 Email: admin@maintenance-app.test
@@ -157,7 +158,7 @@ Current verification status: 29 tests and 77 assertions passing.
 | `/workshops/export/pdf` | Export subscriptions to PDF |
 | `/profile` | User profile settings |
 
-All application routes except authentication routes require a logged-in user.
+All application routes require an existing authenticated administrator. The `/register` route is intentionally unavailable.
 
 ## Project structure
 
