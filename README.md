@@ -1,76 +1,67 @@
 # Maintenance Workshop Management
 
-A Laravel web application for managing maintenance workshop subscriptions and their supporting data: partners, service locations, contacts, and service types.
+Aplikasi web Laravel untuk mengelola langganan maintenance workshop beserta data pendukungnya: partner, lokasi layanan, kontak, dan jenis layanan.
 
-The application includes an operational dashboard, searchable subscription records, Excel and PDF exports, authentication, responsive layouts, and a focused light/dark interface designed for clear demonstrations.
+Antarmuka dibuat ringan dan fokus pada kebutuhan operasional sehingga alur aplikasi mudah dijelaskan saat demo atau presentasi.
 
-## Features
+## Fitur utama
 
-- Dashboard with current totals for subscriptions, partners, locations, and contacts
-- Workshop subscription creation, editing, deletion, search, and status filtering
-- Partner, location, contact, and service-type management
-- Subscription status tracking for active, pending, paused, and expired records
-- Excel and PDF exports
-- User authentication and profile management
-- Responsive desktop and mobile layouts
-- Persistent light and dark themes
-- Default administrator account for local development
+- Dashboard ringkas berisi jumlah langganan, partner, lokasi, dan kontak
+- Pengelolaan langganan workshop: tambah, edit, hapus, cari, dan filter status
+- Pengelolaan partner, lokasi, kontak, dan jenis layanan
+- Status langganan: `active`, `pending`, `paused`, dan `expired`
+- Export data langganan ke Excel dan PDF
+- Autentikasi, pengaturan profil, dan perubahan password
+- Tampilan responsif untuk desktop dan perangkat mobile
+- Light mode dan dark mode yang tersimpan di browser
 
-## Tech stack
+## Teknologi
 
-- PHP 8.1 or newer
+- PHP 8.1+
 - Laravel 10
-- MySQL or MariaDB
-- Laravel Breeze authentication
-- Blade and Alpine.js
-- Tailwind CSS
-- Vite
+- MySQL atau MariaDB
+- Laravel Breeze
+- Blade dan Alpine.js
+- Tailwind CSS 3
+- Vite 5
 - Laravel DOMPDF
 - Laravel Excel
 
-## Local installation
+## Instalasi lokal
 
-### Requirements
-
-Install the following before starting:
-
-- PHP 8.1+
-- Composer
-- Node.js and npm
-- MySQL or MariaDB
-- Laragon, XAMPP, or another local PHP environment
-
-### Setup
-
-Clone the repository and enter the project directory:
+### 1. Clone repository
 
 ```bash
-git clone https://github.com/your-username/maintenance-app.git
-cd maintenance-app
+git clone https://github.com/Rvxz213/WAD-RILA-ALFAPUTRAP-1202224359.git
+cd WAD-RILA-ALFAPUTRAP-1202224359
 ```
 
-Install the PHP and frontend dependencies:
+### 2. Install dependency
 
 ```bash
 composer install
 npm install
 ```
 
-Create the environment file and application key:
+### 3. Siapkan environment
+
+Windows:
 
 ```bash
 copy .env.example .env
 php artisan key:generate
 ```
 
-On macOS or Linux, use:
+macOS atau Linux:
 
 ```bash
 cp .env.example .env
 php artisan key:generate
 ```
 
-Create a MySQL database named `laravel`, then update the database section in `.env`:
+### 4. Hubungkan database
+
+Buat database MySQL, kemudian sesuaikan bagian berikut di `.env`:
 
 ```env
 DB_CONNECTION=mysql
@@ -81,49 +72,41 @@ DB_USERNAME=root
 DB_PASSWORD=
 ```
 
-Run the migrations and seed the administrator account:
+### 5. Migrasi, seed, dan build
 
 ```bash
 php artisan migrate --seed
-```
-
-Build the frontend assets:
-
-```bash
 npm run build
 ```
 
-Start the development server:
+### 6. Jalankan aplikasi
 
 ```bash
 php artisan serve
 ```
 
-Open [http://127.0.0.1:8000](http://127.0.0.1:8000).
+Buka [http://127.0.0.1:8000](http://127.0.0.1:8000).
 
-## Laragon setup
+## Akun demo
 
-Place the project at:
+Seeder membuat akun administrator untuk kebutuhan pengembangan lokal:
+
+```text
+Email: admin@maintenance-app.test
+Password: admin123
+```
+
+Ganti kredensial tersebut sebelum aplikasi dipublikasikan.
+
+## Menjalankan dengan Laragon
+
+Letakkan proyek di folder web Laragon, misalnya:
 
 ```text
 C:\laragon\www\maintenance-app
 ```
 
-The project structure should contain `artisan` directly inside that directory:
-
-```text
-C:\laragon\www\maintenance-app\artisan
-C:\laragon\www\maintenance-app\public
-C:\laragon\www\maintenance-app\routes
-```
-
-With Laragon Auto Virtual Hosts enabled, open:
-
-```text
-http://maintenance-app.test
-```
-
-Use this value in `.env`:
+Aktifkan Auto Virtual Hosts dan gunakan konfigurasi berikut:
 
 ```env
 APP_URL=http://maintenance-app.test
@@ -133,87 +116,90 @@ SESSION_SECURE_COOKIE=false
 SESSION_SAME_SITE=lax
 ```
 
-After changing `.env`, clear Laravel's cached configuration:
+Setelah mengubah `.env`, bersihkan cache konfigurasi:
 
 ```bash
 php artisan optimize:clear
 ```
 
-## Default administrator
+Buka [http://maintenance-app.test](http://maintenance-app.test).
 
-The database seeder creates this account for local development:
+## Perintah pengembangan
 
-```text
-Email: admin@maintenance-app.test
-Password: admin123
-```
-
-Change or remove the default credentials before deploying the application to a public server.
-
-## Development
-
-Start Vite in development mode:
+Menjalankan Vite:
 
 ```bash
 npm run dev
 ```
 
-Run the test suite:
+Menjalankan seluruh test:
 
 ```bash
 php artisan test
 ```
 
-Create a production build:
+Membuat frontend build produksi:
 
 ```bash
 npm run build
 ```
 
-## Main routes
+Kondisi terakhir proyek: 29 test dan 77 assertion berhasil dijalankan.
 
-| Route | Purpose |
+## Route utama
+
+| Route | Fungsi |
 | --- | --- |
-| `/login` | User login |
-| `/dashboard` | Operational summary |
-| `/workshops` | Workshop and subscription management |
-| `/workshops/export/excel` | Export subscription data to Excel |
-| `/workshops/export/pdf` | Export subscription data to PDF |
-| `/profile` | User profile settings |
+| `/login` | Login pengguna |
+| `/dashboard` | Ringkasan operasional |
+| `/workshops` | Pengelolaan workshop dan langganan |
+| `/workshops/export/excel` | Export langganan ke Excel |
+| `/workshops/export/pdf` | Export langganan ke PDF |
+| `/profile` | Pengaturan profil pengguna |
 
-Protected routes require authentication.
+Semua route selain autentikasi memerlukan pengguna yang sudah login.
 
-## Common issues
+## Struktur proyek
 
-### `SQLSTATE[42S02]` table not found
+```text
+app/                 Model, controller, middleware, dan provider
+database/            Migration, factory, dan seeder
+public/              Entry point serta aset frontend hasil build
+resources/css/       Style dasar dan antarmuka dashboard
+resources/js/        Entry point JavaScript dan Alpine.js
+resources/views/     Template Blade
+routes/              Route web, API, console, dan autentikasi
+tests/               Feature test
+tokens.css           Token warna, tipografi, spacing, dan motion
+```
 
-Run the migrations:
+## Masalah umum
+
+### Tabel database belum tersedia
 
 ```bash
 php artisan migrate --seed
 ```
 
-### MySQL tries to connect as `forge`
+### Konfigurasi database masih menggunakan nilai lama
 
-Update `DB_DATABASE`, `DB_USERNAME`, and `DB_PASSWORD` in `.env`, then run:
-
-```bash
-php artisan optimize:clear
-```
-
-### 419 Page Expired
-
-Use one hostname consistently, confirm `APP_URL` matches it, and clear cached configuration. Also confirm that `storage/framework/sessions` exists and is writable.
+Periksa `DB_DATABASE`, `DB_USERNAME`, dan `DB_PASSWORD` di `.env`, lalu jalankan:
 
 ```bash
 php artisan optimize:clear
 ```
 
-Clear the browser cookies for the local domain before opening the login page again.
+### Error 419 Page Expired
 
-### Apache returns 404
+Pastikan `APP_URL` sama dengan hostname yang dibuka di browser. Setelah itu, bersihkan konfigurasi dan cookie untuk domain lokal tersebut.
 
-Point the virtual host DocumentRoot to the Laravel `public` directory and allow `.htaccess` overrides:
+```bash
+php artisan optimize:clear
+```
+
+### Apache menampilkan halaman 404
+
+Arahkan DocumentRoot virtual host ke folder `public`:
 
 ```apache
 <VirtualHost *:80>
@@ -227,21 +213,10 @@ Point the virtual host DocumentRoot to the Laravel `public` directory and allow 
 </VirtualHost>
 ```
 
-## Project structure
+## Catatan keamanan
 
-```text
-app/                 Application models, controllers, and providers
-database/            Migrations, factories, and seeders
-public/              Web entry point and built frontend assets
-resources/css/       Base and Neo-Brutalist stylesheets
-resources/views/     Blade templates
-routes/              Web and authentication routes
-tests/               Feature and unit tests
-```
-
-## Security notes
-
-- Never commit `.env` to GitHub.
-- Generate a separate `APP_KEY` for each installation.
-- Replace the default administrator password before public deployment.
-- Disable `APP_DEBUG` in production.
+- Jangan commit file `.env`.
+- Gunakan `APP_KEY` yang berbeda untuk setiap instalasi.
+- Ganti atau hapus akun demo sebelum deployment publik.
+- Gunakan `APP_DEBUG=false` pada production.
+- Pastikan folder `storage` dan `bootstrap/cache` dapat ditulis oleh web server.
