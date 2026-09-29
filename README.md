@@ -33,7 +33,7 @@ The interface is lightweight and focused on operational workflows, making the ap
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/Rvxz213/WAD-RILA-ALFAPUTRAP-1202224359.git
+git clone https://github.com/f0reest/WAD-RILA-ALFAPUTRAP-1202224359.git
 cd WAD-RILA-ALFAPUTRAP-1202224359
 ```
 
