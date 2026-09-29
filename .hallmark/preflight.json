@@ -1,0 +1,8 @@
+{
+    "date": "2026-09-29",
+    "framework": "Laravel 10 with Blade, Tailwind CSS 3, Alpine.js and Vite 5",
+    "font": "Manrope",
+    "palette": "semantic OKLCH tokens",
+    "motion": "motion-cut",
+    "spacing": "4px base scale"
+}

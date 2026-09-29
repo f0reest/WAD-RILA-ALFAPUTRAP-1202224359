@@ -1,4 +1,4 @@
-<nav x-data="{ open: false }" class="topbar">
+<nav class="topbar">
     <div class="topbar-inner">
         <div class="topbar-left">
             <x-logo class="topbar-logo" />
@@ -35,45 +35,3 @@
         </div>
     </div>
 </nav>
-
-@php
-    $currentRouteName = request()->route() ? request()->route()->getName() : '';
-@endphp
-
-<script>
-            document.addEventListener('DOMContentLoaded', function () {
-                const routeName = '{{ $currentRouteName }}';
-                const sidebarLinks = document.querySelectorAll('.sidebar-link');
-                sidebarLinks.forEach((link) => {
-                    const href = link.getAttribute('href');
-                    if (!href) return;
-
-                    const match = href.includes('dashboard') && routeName === 'dashboard'
-                        || href.includes('workshops') && routeName === 'workshops.index'
-                        || href.includes('profile') && routeName === 'profile.edit';
-
-                    if (match) {
-                        link.classList.add('active');
-                    }
-                });
-
-                // Poll topbar stats every 5 seconds
-                const updateStats = async () => {
-                    try {
-                        const res = await fetch('/topbar/stats');
-                        if (!res.ok) return;
-                        const json = await res.json();
-                        const todayEl = document.getElementById('today-stat');
-                        const onrentEl = document.getElementById('onrent-stat');
-                        if (todayEl) todayEl.textContent = json.today;
-                        if (onrentEl) onrentEl.textContent = json.on_rent;
-                    } catch (e) {
-                        console.error('Failed to update topbar stats', e);
-                    }
-                };
-
-                // initial poll and interval
-                updateStats();
-                setInterval(updateStats, 5000);
-            });
-</script>

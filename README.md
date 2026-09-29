@@ -2,7 +2,7 @@
 
 A Laravel web application for managing maintenance workshop subscriptions and their supporting data: partners, service locations, contacts, and service types.
 
-The application includes an operational dashboard, searchable subscription records, Excel and PDF exports, authentication, responsive layouts, and a Neo-Brutalist interface with light and dark themes.
+The application includes an operational dashboard, searchable subscription records, Excel and PDF exports, authentication, responsive layouts, and a focused light/dark interface designed for clear demonstrations.
 
 ## Features
 

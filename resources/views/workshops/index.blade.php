@@ -3,7 +3,7 @@
         <div class="hero-header workshop-header">
             <div>
                 <span class="raw-kicker">Workshop Management</span>
-                <h1 class="raw-title" style="font-size: clamp(2.5rem, 5vw, 5rem);">Workshop<br>Control</h1>
+                <h1 class="raw-title">Workshop control</h1>
             </div>
             <div class="summary-badge">
                 <div class="summary-label">Coverage</div>

@@ -50,18 +50,3 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
-
-// Topbar stats endpoint for AJAX polling
-Route::get('/topbar/stats', function () {
-    $today = \App\Models\WorkshopSubscription::whereDate('starts_at', now())->count();
-    $onRent = \App\Models\WorkshopSubscription::where(function($q){
-        $q->where('status','on_rent')
-          ->orWhere(function($q2){
-              $q2->where('status','active')
-                 ->whereDate('starts_at','<=', now())
-                 ->whereDate('ends_at','>=', now());
-          });
-    })->count();
-
-    return response()->json(['today' => $today, 'on_rent' => $onRent]);
-});
