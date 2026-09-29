@@ -2,13 +2,13 @@
     <x-slot name="header">
         <div class="hero-header operations-header">
             <div>
-                <span class="raw-kicker">Maintenance operations</span>
-                <h1 class="raw-title">Workshop subscriptions</h1>
-                <p class="page-intro">Manage subscriptions and the partner network that supports every maintenance service.</p>
+                <span class="raw-kicker">Case Study 05 · Individual D</span>
+                <h1 class="raw-title">Maintenance workshop module</h1>
+                <p class="page-intro">Manage workshop subscriptions, maintenance partners, locations, contacts, and service types in one module.</p>
             </div>
             <div class="hero-header-actions">
                 <a href="{{ route('workshops.index', ['create' => 'subscription']) }}#subscriptions" class="raw-button">
-                    Add subscription manually
+                    Add subscription
                 </a>
                 <a href="{{ route('workshops.index') }}" class="raw-button secondary">Manage workshop data</a>
             </div>

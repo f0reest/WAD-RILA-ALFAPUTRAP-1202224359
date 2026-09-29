@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+        <title>{{ config('app.name', 'Maintenance Workshop Module') }}</title>
 
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -20,8 +20,8 @@
                     <span class="auth-badge">Maintenance</span>
                     <span class="auth-badge secondary">Ops</span>
                 </div>
-                <h1 class="auth-brand-title">Workshop<br>Command</h1>
-                <p class="auth-brand-copy">Control partners, locations, contacts, and subscription coverage from one operational dashboard.</p>
+                <h1 class="auth-brand-title">Maintenance<br>Workshop</h1>
+                <p class="auth-brand-copy">Individual D module for workshop subscriptions, maintenance partners, locations, contacts, and service types.</p>
                 <div class="auth-brand-footer">
                     <span class="auth-mini-label">Live</span>
                     <span class="auth-mini-value">Service readiness</span>

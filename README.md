@@ -1,8 +1,20 @@
 # Maintenance Workshop Management
 
-A Laravel web application for managing workshop maintenance subscriptions and their supporting data, including partners, service locations, contacts, and service types.
+A Laravel web application developed for **Case Study 05: Car Rental Information System**, focused exclusively on **Individual D: Maintenance Workshop Module**.
 
 The interface is lightweight and focused on operational workflows, making the application easy to explain during demonstrations and presentations.
+
+## Individual D scope
+
+This repository implements only the Maintenance Workshop Module defined for Individual D. Its responsibility is the management of workshop subscription data for:
+
+- Maintenance partners
+- Workshop locations
+- Partner contacts
+- Types of services
+- Workshop subscriptions connecting those records
+
+Vehicle fleet management, rental package management, and driver management belong to Individuals A, B, and C and are intentionally outside this repository.
 
 ## Main features
 
@@ -145,7 +157,7 @@ Create a production frontend build:
 npm run build
 ```
 
-Current verification status: 29 tests and 77 assertions passing.
+Current verification status: 30 tests and 82 assertions passing.
 
 ## Main routes
 
