@@ -33,7 +33,7 @@
         @endif
 
         @if($selectedPlan)
-            <!-- Plan selected banner remains; auto-scroll/highlight removed per revert -->
+
         @endif
         @if (session('success'))
             <div class="raw-card mb-6 px-4 py-3 text-sm font-semibold uppercase tracking-[0.12em] text-neutral-800">
