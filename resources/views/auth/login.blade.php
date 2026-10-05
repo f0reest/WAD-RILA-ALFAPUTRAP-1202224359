@@ -39,28 +39,7 @@
         </div>
 
         <div class="auth-actions">
-            <button type="button" id="demo-admin" class="raw-button secondary demo-button">Use demo admin</button>
             <button type="submit" class="raw-button">Log in</button>
         </div>
     </form>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const form = document.getElementById('login-form');
-            const demoButton = document.getElementById('demo-admin');
-
-            if (form && demoButton) {
-                demoButton.addEventListener('click', function () {
-                    const emailInput = form.querySelector('input[name="email"]');
-                    const passwordInput = form.querySelector('input[name="password"]');
-
-                    if (emailInput && passwordInput) {
-                        emailInput.value = 'admin@maintenance-app.test';
-                        passwordInput.value = 'admin123';
-                        form.submit();
-                    }
-                });
-            }
-        });
-    </script>
 </x-guest-layout>

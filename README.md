@@ -100,16 +100,17 @@ php artisan serve
 
 Open [http://127.0.0.1:8000](http://127.0.0.1:8000).
 
-## Demo account
+## Administrator account
 
-The database seeder creates the administrator account used to access the application locally. Public registration is disabled, so only accounts already stored in the `users` table can sign in.
+Public registration is disabled. Before running the database seeder, set a private administrator identity in `.env`:
 
-```text
-Email: admin@maintenance-app.test
-Password: admin123
+```env
+ADMIN_NAME="Administrator"
+ADMIN_EMAIL="your-private-email@example.com"
+ADMIN_PASSWORD="use-a-long-random-password"
 ```
 
-Change these credentials before publishing the application.
+Run `php artisan migrate --seed` after setting these values. Never commit the real credentials.
 
 ## Running with Laragon
 
@@ -230,6 +231,6 @@ Point the virtual host DocumentRoot to Laravel's `public` directory:
 
 - Never commit the `.env` file.
 - Generate a separate `APP_KEY` for every installation.
-- Replace or remove the demo account before a public deployment.
+- Keep administrator credentials private and use a unique, long password.
 - Use `APP_DEBUG=false` in production.
 - Ensure the web server can write to `storage` and `bootstrap/cache`.

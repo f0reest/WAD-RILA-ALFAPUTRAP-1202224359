@@ -3,8 +3,8 @@
 namespace Tests\Feature;
 
 use App\Models\User;
-use App\Models\WorkshopPartner;
 use App\Models\WorkshopLocation;
+use App\Models\WorkshopPartner;
 use App\Models\WorkshopServiceType;
 use App\Models\WorkshopSubscription;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -16,7 +16,7 @@ class WorkshopExportTest extends TestCase
 
     public function test_authenticated_user_can_export_excel(): void
     {
-        User::ensureDefaultAdmin();
+        $this->seed();
 
         WorkshopPartner::create([
             'name' => 'Alpha Workshop',
@@ -56,7 +56,7 @@ class WorkshopExportTest extends TestCase
             'notes' => 'Premium package',
         ]);
 
-        $this->actingAs(User::ensureDefaultAdmin());
+        $this->actingAs(User::where('email', config('admin.email'))->firstOrFail());
 
         $response = $this->get('/workshops/export/excel');
 
@@ -66,8 +66,8 @@ class WorkshopExportTest extends TestCase
 
     public function test_authenticated_user_can_export_pdf(): void
     {
-        User::ensureDefaultAdmin();
-        $this->actingAs(User::ensureDefaultAdmin());
+        $this->seed();
+        $this->actingAs(User::where('email', config('admin.email'))->firstOrFail());
 
         $response = $this->get('/workshops/export/pdf');
 
